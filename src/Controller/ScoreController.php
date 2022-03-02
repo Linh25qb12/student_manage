@@ -25,4 +25,28 @@ class ScoreController extends AbstractController
             'scores' => $scores,
         ));
     }
+    /**
+     * @Route("/score/create", name="score_create", methods={"GET","POST"})
+     */
+    public function scoreCreate(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $sco = new Score();
+        $form = $this->createForm(ScoreType::class, $sco);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $sco->setStudent($request->request->get('score')['student']);
+            $sco->setSubject($request->request->get('score')['subject']);
+            $sco->setScore($request->request->get('score')['score']);
+            $entityManager->persist($sco);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('score');
+        }
+
+        return $this->renderForm('score/create.html.twig', [
+            'category' => $sco,
+            'form' => $form,
+        ]);
+    }
 }
