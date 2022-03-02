@@ -82,7 +82,28 @@ class ScoreController extends AbstractController
 
         $em->remove($result[0]);
         $em->flush();
-        return $this->render('score/success.html.twig');
+        $this->addFlash(
+            'error',
+            'Score deleted');
+        return $this->render('score/index.html.twig');
+    }
+    /**
+     * @Route("/edit/{student}", name="score_edit", methods={"GET", "POST"})
+     */
+    public function scoreEdit(Request $request, Score $score, EntityManagerInterface $entityManager): Response
+    {
+        $form = $this->createForm(ScoreType::class, $score);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('score', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('score/edit.html.twig', [
+            'score' => $score,
+            'form' => $form,
+        ]);
     }
 }
