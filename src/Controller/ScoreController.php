@@ -64,4 +64,25 @@ class ScoreController extends AbstractController
             'scores' => $result
         ));
     }
+    /**
+     * @Route("/score/delete/{student}/{subject}", methods={"GET"}, name="score_delete_by_id")
+     */
+    public function deleteByStudentID($student, $subject)
+    {
+
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $sco = $em->getRepository(Score::class);
+        $result = $sco->findScoreByStudentIdAndSubjectId($student, $subject);
+        if(!$result[0])
+        {
+            return $this->render('score/error.html.twig');
+        }
+
+        $em->remove($result[0]);
+        $em->flush();
+        return $this->render('score/success.html.twig');
+
+    }
 }

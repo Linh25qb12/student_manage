@@ -29,15 +29,17 @@ class ScoreRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    /*
-    public function findOneBySomeField($value): ?Score
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
+    public function findScoreByStudentIdAndSubjectId($student, $subject){
+        return $this->createQueryBuilder("s")
+            ->setParameters(
+                [
+                    'student' => $student,
+                    'subject' => $subject
+                ]
+            )
+            ->where("s.student = :student")
+            ->andWhere("s.subject = :subject")
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getResult();
     }
-    */
 }
