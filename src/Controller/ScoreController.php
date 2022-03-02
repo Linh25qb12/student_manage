@@ -49,4 +49,19 @@ class ScoreController extends AbstractController
             'form' => $form,
         ]);
     }
+    /**
+     * @Route("/score/find/{id}", name="score_find_by_StudentID")
+     */
+    public function findByStudentID($id)
+    {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $sco = $em->getRepository(Score::class);
+        $result = $sco->findByStudentID($id);
+
+        return $this->render('score/index.html.twig', array(
+            'scores' => $result
+        ));
+    }
 }
