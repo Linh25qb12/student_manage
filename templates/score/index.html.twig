@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Score list</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Subject ID</th>
+            <th>Score</th>
+{#             #}
+        </tr>
+        </thead>
+        <tbody>
+        {% for score in scores %}
+            <tr>
+                <td>{{ score.student}}</td>
+                <td>{{ score.subject }}</td>
+                <td>{{ score.score }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

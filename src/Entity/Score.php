@@ -18,12 +18,14 @@ class Score
 
     /**
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity=Student::class, inversedBy="scores")
      */
     private $student;
 
     /**
      * @ORM\Id
+     * @ORM\Column(type="integer")
      * @ORM\ManyToOne(targetEntity=Subject::class, inversedBy="scores")
      */
     private $subject;
@@ -41,24 +43,24 @@ class Score
         return $this;
     }
 
-    public function getStudent(): ?Student
+    public function getStudent(): ?int
     {
         return $this->student;
     }
 
-    public function setStudent(?Student $student): self
+    public function setStudent( $student): self
     {
         $this->student = $student;
 
         return $this;
     }
 
-    public function getSubject(): ?Subject
+    public function getSubject(): ?int
     {
         return $this->subject;
     }
 
-    public function setSubject(?Subject $subject): self
+    public function setSubject( $subject): self
     {
         $this->subject = $subject;
 
