@@ -8,6 +8,7 @@
             <th>Student ID</th>
             <th>Subject ID</th>
             <th>Score</th>
+            <th>Action</th>
 {#             #}
         </tr>
         </thead>
@@ -17,6 +18,7 @@
                 <td>{{ score.student}}</td>
                 <td>{{ score.subject }}</td>
                 <td>{{ score.score }}</td>
+                <td><a href="{{ path('score_edit', {'student': score.student}) }}">edit</a></td>
             </tr>
         {% endfor %}
         </tbody>
