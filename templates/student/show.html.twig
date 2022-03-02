@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ student.fullname }}</h1>
+
+    <table>
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ student.id }}</td>
+        </tr>
+        <tr>
+            <th>Date of Birth</th>
+            <td>{{ student.dob.format('d/m/Y') }}</td>
+        </tr>
+    </table>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Subject Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#        {{ student.scores[0] }}#}
+        {#        {% for score in student.scores() %}#}
+        {#            <tr>#}
+        {#                <td>{{ score.score }}</td>#}
+        {#            </tr>#}
+        {#        {% endfor %}#}
+        </tbody>
+    </table>
+
+
+{% endblock %}

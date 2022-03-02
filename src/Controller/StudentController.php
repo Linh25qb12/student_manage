@@ -7,8 +7,8 @@ use App\Form\StudentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class StudentController extends AbstractController
 {
@@ -45,6 +45,22 @@ class StudentController extends AbstractController
     }
 
     /**
+     * @Route("/student/{id}, name="student_show", methods={"GET"})
+     */
+    public function showStudentById($id)
+    {
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $stu = $em->getRepository(Student::class);
+        $result = $stu->findByStudentID($id);
+
+        return $this->render('student/show.html.twig', array(
+            'student' => $result
+        ));
+    }
+
+    /**
      * @Route("student/edit/{id}", name="student_edit", methods={"GET", "POST"})
      */
     public function edit(Request $request, Student $student, EntityManagerInterface $entityManager)
@@ -64,6 +80,26 @@ class StudentController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("student/delete/{id}", name="student_delete", methods={"GET", "POST"})
+     */
+
+    public function deleteStudent ($id){
+        $em = $this
+            ->getDoctrine()
+            ->getManager();
+        $stu = $em->getRepository(Student::class);
+        $result = $stu->findByStudentId($id);
+        if(!$result[0])
+        {
+            return $this->render('student/error.html.twig');
+        }
+
+        $em->remove($result[0]);
+        $em->flush();
+        return $this->redirectToRoute('student_list');
+
+    }
 
 
 }
