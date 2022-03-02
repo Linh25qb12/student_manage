@@ -44,4 +44,26 @@ class StudentController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("student/edit/{id}", name="student_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, Student $student, EntityManagerInterface $entityManager)
+    {
+        $form = $this->createForm(StudentType::class, $student);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->flush();
+
+            return $this->redirectToRoute('student_list');
+        }
+
+        return $this->renderForm('student/edit.html.twig', [
+            'student' => $student,
+            'form' => $form,
+        ]);
+    }
+
+
+
 }
