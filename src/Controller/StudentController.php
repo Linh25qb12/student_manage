@@ -7,8 +7,8 @@ use App\Form\StudentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class StudentController extends AbstractController
 {
@@ -45,19 +45,15 @@ class StudentController extends AbstractController
     }
 
     /**
-     * @Route("/student/{id}, name="student_show", methods={"GET"})
+     * @Route("student/show/{id}", name="student_show")
      */
+
     public function showStudentById($id)
     {
-        $em = $this
-            ->getDoctrine()
-            ->getManager();
-        $stu = $em->getRepository(Student::class);
-        $result = $stu->findByStudentID($id);
+        $em = $this->getDoctrine()->getRepository(Student::class);
+        $stu = $em->find($id);
+        return $this->render('student/show.html.twig', array('student' => $stu));
 
-        return $this->render('student/show.html.twig', array(
-            'student' => $result
-        ));
     }
 
     /**

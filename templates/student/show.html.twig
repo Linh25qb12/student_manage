@@ -22,12 +22,12 @@
         </tr>
         </thead>
         <tbody>
-        {#        {{ student.scores[0] }}#}
-        {#        {% for score in student.scores() %}#}
-        {#            <tr>#}
-        {#                <td>{{ score.score }}</td>#}
-        {#            </tr>#}
-        {#        {% endfor %}#}
+                {{ student.scores[0]}}
+                {% for score in student.scores() %}
+                    <tr>
+                        <td>{{ score.score }}</td>
+                    </tr>
+                {% endfor %}
         </tbody>
     </table>
 
