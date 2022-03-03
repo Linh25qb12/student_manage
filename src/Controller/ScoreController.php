@@ -85,7 +85,7 @@ class ScoreController extends AbstractController
         $this->addFlash(
             'error',
             'Score deleted');
-        return $this->render('score/index.html.twig');
+        return $this->render('score/success.html.twig');
     }
     /**
      * @Route("/edit/{student}", name="score_edit", methods={"GET", "POST"})
