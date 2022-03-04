@@ -2,13 +2,13 @@
 {% block body %}
     {{ form_start(form) }}
     <div class="form-group">
-        <label for="MajorID">MajorID:</label>
-        {{ form_widget(form.MajorID) }}
+        <label for="MajorName">Major Name:</label>
+        {{ form_widget(form.Major) }}
     </div>
     <div class="form-group">
-        <label for="Name">Name:</label>
+        <label for="Name">Subject:</label>
         {{ form_widget(form.Name) }}
     </div>
-    <input type="submit" name="create_todo" value="Create" class="btn btn-primary"/>
+    <input type="submit" name="create_subject" value="Create" class="btn btn-primary"/>
     {{ form_end(form) }}
 {% endblock %}

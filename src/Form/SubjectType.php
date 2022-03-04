@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Subject;
+use App\Entity\Major;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +15,10 @@ class SubjectType extends AbstractType
     {
         $builder
             ->add('Name')
-            ->add('MajorID')
+            ->add('Major', EntityType::class, [
+                'class' => Major::class,
+                'choice_label' => 'Name'
+            ])
         ;
     }
 
