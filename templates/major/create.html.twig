@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+    <div class="form-group">
+        <label for="MajorName">MajorName:</label>
+        {{ form_widget(form.MajorName) }}
+    </div>
+    <input type="submit" name="create_todo" value="Create" class="btn btn-primary"/>
+    {{ form_end(form) }}
+{% endblock %}
