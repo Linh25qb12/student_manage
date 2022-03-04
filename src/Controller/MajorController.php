@@ -32,7 +32,7 @@ class MajorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $major->setName($request->request->get('major')['Name']);
+            $major->setName($request->request->get('major')['name']);
             $entityManager->persist($major);
             $entityManager->flush();
 
