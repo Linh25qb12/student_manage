@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Subject list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>MajorID</th>
+            <th>Major Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for subject in subjects %}
+            <tr>
+                <td>{{ subject.id }}</td>
+                <td>{{ subject.major }}</td>
+                <td>{{ subject.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
