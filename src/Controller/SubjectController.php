@@ -46,4 +46,22 @@ class SubjectController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    /**
+     * @Route("/subject/delete/{id}", methods={"GET"}, name="delete_subject")
+     */
+    public function subjectDelete($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $subject = $em->getRepository(Subject::class)->find($id);
+
+        if(!$subject)
+        {
+            return $this->render('subject/error.html.twig');
+        }
+
+        $em->remove($subject);
+        $em->flush();
+        return $this->render('subject/success.html.twig');
+    }
 }
