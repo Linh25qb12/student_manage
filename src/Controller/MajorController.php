@@ -45,5 +45,21 @@ class MajorController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/major/delete/{id}", methods={"GET"}, name="delete_major")
+     */
+    public function majorDelete($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $major = $em->getRepository(Major::class)->find($id);
 
+        if(!$major)
+        {
+            return $this->render('major/error.html.twig');
+        }
+
+        $em->remove($major);
+        $em->flush();
+        return $this->render('major/success.html.twig');
+    }
 }
