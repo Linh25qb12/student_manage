@@ -12,7 +12,7 @@ class MajorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('MajorName')
+            ->add('name')
         ;
     }
 
