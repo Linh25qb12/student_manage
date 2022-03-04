@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Major list</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Major</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for major in majors %}
+            <tr>
+                <td>{{ major.id }}</td>
+                <td>{{ major.name }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
