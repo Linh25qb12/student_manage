@@ -1,35 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ student.fullname }}</h1>
-
-    <table>
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ student.id }}</td>
-        </tr>
-        <tr>
-            <th>Date of Birth</th>
-            <td>{{ student.dob.format('d/m/Y') }}</td>
-        </tr>
-    </table>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Subject Name</th>
-        </tr>
-        </thead>
-        <tbody>
-                {{ student.scores[0]}}
-                {% for score in student.scores() %}
+    <a style="margin: 2.5% 0 0 2.5%" class="btn btn-outline-dark" href="{{path('student_list')}}" role="button">Back to Student List</a>
+    <h1 style="margin: 30px">{{ student.fullname }}</h1>
+    <div>
+        <div style="margin: 2.5% 10% ">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr class="table-dark">
+                    <th style="text-align: center" scope="col">ID</th>
+                    <th style="text-align: center" scope="col">Major</th>
+                    <th style="text-align: center" scope="col">Subject</th>
+                </tr>
+                </thead>
+                <tbody>
                     <tr>
-                        <td>{{ score.score }}</td>
+                        <th style="text-align: center; vertical-align: middle" scope="row" >{{ student.id }}</th>
+                        <td style="text-align: center; vertical-align: middle">{{ student.major }}</td>
+                        <td>
+                            {% for subject in student.major.subjects %}
+                                <ul>
+                                    <li style="list-style-type: none">
+                                        {{ subject.Name }}
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        </td>
                     </tr>
-                {% endfor %}
-        </tbody>
-    </table>
-
-
+                </tbody>
+            </table>
+        </div>
+    </div>
+        <a style="position: fixed; right: 10%" class="btn btn-outline-info" href="{{path('score_find_by_StudentID', {'id': student.id})}}" role="button">View Student's Score</a>
 {% endblock %}

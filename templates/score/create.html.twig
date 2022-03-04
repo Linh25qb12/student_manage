@@ -1,19 +1,44 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ form_start(form) }}
-    <div class="form-group">
-        <label for="studentID">StudentID:</label>
-        {{ form_widget(form.student) }}
+    <div style="margin: 5% 30%">
+    <div style="width: 100%; text-align: center; margin-bottom: 25px;background-color: #5eb5e0; padding: 25px 0">
+        <h1>
+            Score
+        </h1>
     </div>
     <div class="form-group">
-        <label for="SubjectID">SubjectID:</label>
-        {{ form_widget(form.subject) }}
+        <label style="margin: 0 0 10px 10px" for="Student">Student:</label>
+        {{ form_widget(form.student,{
+            'attr':{
+                'class':'form-control',
+                'placeholder': 'Enter StudentID...',
+                'style':'margin-bottom: 20px'
+            }
+        }) }}
     </div>
     <div class="form-group">
-        <label for="Score">Score:</label>
-        {{ form_widget(form.score) }}
+        <label style="margin: 0 0 10px 10px" for="Subject">Subject: </label>
+        {{ form_widget(form.subject,{
+            'attr':{
+                'class':'form-control',
+                'placeholder': 'Enter SubjectID...',
+                'style':'margin-bottom: 20px'
+            }
+        }) }}
     </div>
+    <div class="form-group">
+        <label style="margin: 0 0 10px 10px" for="Score">Score:</label>
+        {{ form_widget(form.score,{
+            'attr':{
+                'class':'form-control',
+                'style':'margin-bottom: 20px'
+            }
+        }) }}
     </div>
-    <input type="submit" name="create_todo" value="Create" class="btn btn-primary"/>
+    <div style="margin-left: 15%; width: 70%" class="d-grid gap-2">
+    <input type="submit" name="create_student" value="Add" class="btn btn-outline-dark"/>
+    <div>
+    </div>
     {{ form_end(form) }}
 {% endblock %}

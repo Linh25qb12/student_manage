@@ -1,18 +1,38 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {{ form_start(form) }}
-    <div class="form-group">
-<<<<<<< HEAD
-        <label for="MajorID">Major:</label>
-=======
-        <label for="MajorName">Major Name:</label>
->>>>>>> 519d38d4875b7f574be0a25202fc84d5b1fdeda5
-        {{ form_widget(form.Major) }}
+    <div style="margin: 5% 30%">
+    <div style="width: 100%; text-align: center; margin-bottom: 25px;background-color: #5eb5e0; padding: 25px 0">
+        <h1>
+            Subject
+        </h1>
     </div>
     <div class="form-group">
-        <label for="Name">Subject:</label>
-        {{ form_widget(form.Name) }}
+        <label style="margin: 0 0 10px 10px" for="SubjectName">Subject Name:</label>
+        {{ form_widget(form.Name,{
+            'attr':{
+                'class':'form-control',
+                'placeholder': 'Enter Subject name...',
+                'style':'margin-bottom: 20px'
+
+            }
+        }) }}
+        <div class="invalid-feedback">
+            {{ form_errors(form.Name) }}
+        </div>
     </div>
-    <input type="submit" name="create_subject" value="Create" class="btn btn-primary"/>
+    <div class="form-group">
+        <label style="margin: 0 0 10px 10px" for="major">Major:</label>
+        {{ form_widget(form.Major,{
+            'attr':{
+                'class':'form-control',
+                'style':'margin-bottom: 20px'
+            }
+        }) }}
+    </div>
+    <div style="margin-left: 15%; width: 70%" class="d-grid gap-2">
+        <input type="submit" name="create_student" value="Add" class="btn btn-outline-dark"/>
+    <div>
+    </div>
     {{ form_end(form) }}
 {% endblock %}

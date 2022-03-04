@@ -1,24 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Subject list</h1>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Major Name</th>
-            <th>Subject</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for subject in subjects %}
-            <tr>
-                <td>{{ subject.id }}</td>
-                <td>{{ subject.major }}</td>
-                <td>{{ subject.name }}</td>
+    <h1 style="margin: 2.5%">Subject List</h1>
+    <div style="margin: 2.5% 10% ">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+            <tr class="table-dark">
+                <th style="text-align: center" scope="col">ID</th>
+                <th style="text-align: center" scope="col">Major </th>
+                <th style="text-align: center" scope="col">Subject</th>
+                <th style="text-align: center" scope="col">Action</th>
             </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for subject in subjects %}
+                <tr>
+                    <th style="text-align: center" scope="row" >{{ subject.id }}</th>
+                    <td>{{ subject.major }}</td>
+                    <td>{{ subject.name }}</td>
+                    <td>
+                            <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('delete_subject', {'id': subject.id}) }}">Delete</a>
+                    </td>
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div style="margin-left: 15%; padding-bottom: 20px; width: 70%" class="d-grid gap-2">
+        <a class="btn btn-outline-info" href="{{path('subject_create')}}" role="button">Add a new Subject</a>
+    </div>
+
+
 {% endblock %}

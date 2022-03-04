@@ -86,7 +86,7 @@ class StudentController extends AbstractController
             ->getManager();
         $stu = $em->getRepository(Student::class);
         $result = $stu->findByStudentId($id);
-        if(!$result[0])
+        if(!$result)
         {
             return $this->render('student/error.html.twig');
         }
