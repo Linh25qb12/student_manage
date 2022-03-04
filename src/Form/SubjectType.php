@@ -2,8 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Subject;
 use App\Entity\Major;
+use App\Entity\Subject;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
