@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Major;
+use App\Form\MajorType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class MajorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $major->setMajorName($request->request->get('major')['MajorName']);
+            $major->setName($request->request->get('major')['MajorName']);
             $entityManager->persist($major);
             $entityManager->flush();
 
@@ -43,4 +44,6 @@ class MajorController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
 }
