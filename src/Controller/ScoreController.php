@@ -88,7 +88,7 @@ class ScoreController extends AbstractController
         return $this->render('score/success.html.twig');
     }
     /**
-     * @Route("/edit/{student}", name="score_edit", methods={"GET", "POST"})
+     * @Route("/score/edit/{student}", name="score_edit", methods={"GET", "POST"})
      */
     public function scoreEdit(Request $request, Score $score, EntityManagerInterface $entityManager): Response
     {
