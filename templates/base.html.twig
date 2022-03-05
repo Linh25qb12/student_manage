@@ -39,10 +39,13 @@
                         <a class="btn btn-sm btn-outline-secondary" style="border: none; color: white; font-size: 20px  !important;" aria-current="page"  href="{{ path('registration') }}">Registration</a>
                     </li>
                 </ul>
+                {% if app.user %}
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
+                    <a style="margin-left: 10px" class="btn btn-outline-secondary" href="{{path('app_logout')}}" role="button">Logout</a>
                 </form>
+                {% endif %}
             </div>
         </div>
     </nav>

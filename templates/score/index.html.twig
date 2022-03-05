@@ -2,38 +2,45 @@
 
 {% block body %}
     <h1 style="margin: 2.5%">Scoreboard</h1>
-    <div style="margin: 2.5% 10% ">
-        <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-            <tr class="table-dark">
-                <th style="text-align: center" scope="col">Student</th>
-                <th style="text-align: center" scope="col">Subject</th>
-                <th style="text-align: center" scope="col">Score</th>
-                <th style="text-align: center" scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for score in scores %}
-                <tr>
-                    <td>{{ score.student}}</td>
-                    <td>{{ score.subject }}</td>
-                    <td>{{ score.score }}</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('score_delete_by_id', {'student': score.student, 'subject': score.subject}) }}">Delete</a>
-                            <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('score_edit', {'student': score.student}) }}">Edit</a>
-                        </div>
-
-                    </td>
-
+    {% if app.user != null %}
+        <div style="margin: 2.5% 10% ">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr class="table-dark">
+                    <th style="text-align: center" scope="col">Student</th>
+                    <th style="text-align: center" scope="col">Subject</th>
+                    <th style="text-align: center" scope="col">Score</th>
+                    <th style="text-align: center" scope="col">Action</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div style="margin-left: 15%; width: 70%" class="d-grid gap-2">
-        <a class="btn btn-outline-info" href="{{path('score_create')}}" role="button">Add new Scoreboard</a>
-    </div>
+                </thead>
+                <tbody>
+                {% for score in scores %}
+                    <tr>
+                        <td>{{ score.student}}</td>
+                        <td>{{ score.subject }}</td>
+                        <td>{{ score.score }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('score_delete_by_id', {'student': score.student, 'subject': score.subject}) }}">Delete</a>
+                                <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('score_edit', {'student': score.student}) }}">Edit</a>
+                            </div>
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-left: 15%; width: 70%" class="d-grid gap-2">
+            <a class="btn btn-outline-info" href="{{path('score_create')}}" role="button">Add new Scoreboard</a>
+        </div>
+    {% endif %}
+
+    {% if app.user == null %}
+        <a style="margin-left: 10%" href="{{ path('app_login') }}" class="btn btn-info">
+            You need to login to see the list >></a>
+    {% endif %}
 
 
 {% endblock %}

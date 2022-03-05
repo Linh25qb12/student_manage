@@ -2,38 +2,44 @@
 
 {% block body %}
     <h1 style="margin: 2.5%">Student List</h1>
-    <div style="margin: 2.5% 10% ">
-        <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-            <tr class="table-dark">
-                <th style="text-align: center" scope="col">ID</th>
-                <th style="text-align: center" scope="col">Full Name</th>
-                <th style="text-align: center" scope="col">Major</th>
-                <th style="text-align: center" scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for student in students %}
-                <tr>
-                    <th style="text-align: center" scope="row" >{{ student.id }}</th>
-                    <td><a class="link-dark" style="text-decoration: none" href="{{ path('student_show', {'id': student.id}) }}">{{ student.fullname }}</a></td>
-                    <td>{{ student.major }}</td>
-                    <td>
-                        <div class="btn-group" role="group" aria-label="Basic example">
-                            <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('student_delete', {'id': student.id}) }}">Delete</a>
-                            <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('student_edit', {'id': student.id}) }}">Edit</a>
-                        </div>
-
-                    </td>
-
+    {% if app.user != null %}
+        <div style="margin: 2.5% 10% ">
+            <table class="table table-striped table-bordered">
+                <thead class="thead-dark">
+                <tr class="table-dark">
+                    <th style="text-align: center" scope="col">ID</th>
+                    <th style="text-align: center" scope="col">Full Name</th>
+                    <th style="text-align: center" scope="col">Major</th>
+                    <th style="text-align: center" scope="col">Action</th>
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div style="margin-left: 15%; width: 70%" class="d-grid gap-2">
-        <a class="btn btn-outline-info" href="{{path('student_create')}}" role="button">Add new Student</a>
-    </div>
+                </thead>
+                <tbody>
+                {% for student in students %}
+                    <tr>
+                        <th style="text-align: center" scope="row" >{{ student.id }}</th>
+                        <td><a class="link-dark" style="text-decoration: none" href="{{ path('student_show', {'id': student.id}) }}">{{ student.fullname }}</a></td>
+                        <td>{{ student.major }}</td>
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('student_delete', {'id': student.id}) }}">Delete</a>
+                                <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('student_edit', {'id': student.id}) }}">Edit</a>
+                            </div>
 
+                        </td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-left: 15%; width: 70%" class="d-grid gap-2">
+            <a class="btn btn-outline-info" href="{{path('student_create')}}" role="button">Add new Student</a>
+        </div>
+    {% endif %}
+
+    {% if app.user == null %}
+        <a style="margin-left: 10%" href="{{ path('app_login') }}" class="btn btn-info">
+            You need to login to see the list >></a>
+    {% endif %}
 
 {% endblock %}
