@@ -6,6 +6,7 @@ use App\Entity\Score;
 use App\Form\ScoreType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Exception\BadMessageException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -75,16 +76,13 @@ class ScoreController extends AbstractController
             ->getManager();
         $sco = $em->getRepository(Score::class);
         $result = $sco->findScoreByStudentIdAndSubjectId($student, $subject);
-        if(!$result[0])
+        if(!$result)
         {
             return $this->render('score/error.html.twig');
         }
 
         $em->remove($result[0]);
         $em->flush();
-        $this->addFlash(
-            'error',
-            'Score deleted');
         return $this->render('score/success.html.twig');
     }
     /**
