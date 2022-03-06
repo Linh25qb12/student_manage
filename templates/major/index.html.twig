@@ -8,7 +8,9 @@
             <tr class="table-dark">
                 <th style="text-align: center" scope="col">ID</th>
                 <th style="text-align: center" scope="col">Major Name</th>
-                <th style="text-align: center" scope="col">Action</th>
+                {%if is_granted('ROLE_ADMIN') %}
+                 <th style="text-align: center" scope="col">Action</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -16,19 +18,22 @@
                 <tr>
                     <th style="text-align: center" scope="row" >{{ major.id }}</th>
                     <td>{{ major.name }}</td>
+                    {%if is_granted('ROLE_ADMIN') %}
                     <td>
                         <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('delete_major', {'id': major.id}) }}">Delete</a>
                         <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('edit_major', {'id': major.id}) }}">Edit</a>
                     </td>
-
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    {%if is_granted('ROLE_ADMIN') %}
     <div style="margin-left: 15%; padding-bottom: 20px; width: 70%" class="d-grid gap-2">
         <a class="btn btn-outline-info" href="{{path('major_create')}}" role="button">Add a new Major</a>
     </div>
+    {% endif %}
 
 
 {% endblock %}

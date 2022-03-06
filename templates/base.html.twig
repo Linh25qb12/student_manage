@@ -32,12 +32,7 @@
                     <li class="nav-item" style="margin-left: 40px!important;">
                         <a class="btn btn-sm btn-outline-secondary" style="border: none; color: white; font-size: 20px  !important;" aria-current="page"  href="{{ path('score') }}">Score</a>
                     </li>
-                    <li class="nav-item" style="margin-left: 40px!important;">
-                        <a class="btn btn-sm btn-outline-secondary" style="border: none; color: white; font-size: 20px  !important;" aria-current="page"  href="{{ path('app_login') }}">Login</a>
-                    </li>
-                    <li class="nav-item" style="margin-left: 40px!important;">
-                        <a class="btn btn-sm btn-outline-secondary" style="border: none; color: white; font-size: 20px  !important;" aria-current="page"  href="{{ path('registration') }}">Registration</a>
-                    </li>
+
                 </ul>
                 {% if app.user %}
                 <form class="d-flex">
@@ -45,6 +40,11 @@
                     <button class="btn btn-sm btn-outline-secondary" type="submit">Search</button>
                     <a style="margin-left: 10px" class="btn btn-outline-secondary" href="{{path('app_logout')}}" role="button">Logout</a>
                 </form>
+                {% endif %}
+
+                {% if app.user == null %}
+                    <a style="margin-left: 10px; color: #FFFFFF" class="btn btn-outline-secondary" href="{{path('app_login')}}" role="button">Logout</a>
+                    <a style="margin-left: 10px; color: #FFFFFF" class="btn btn-outline-secondary" href="{{path('registration')}}" role="button">Registrtion</a>
                 {% endif %}
             </div>
         </div>

@@ -9,7 +9,9 @@
                 <th style="text-align: center" scope="col">ID</th>
                 <th style="text-align: center" scope="col">Major </th>
                 <th style="text-align: center" scope="col">Subject</th>
-                <th style="text-align: center" scope="col">Action</th>
+                {%if is_granted('ROLE_ADMIN') %}
+                    <th style="text-align: center" scope="col">Action</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
@@ -18,20 +20,24 @@
                     <th style="text-align: center" scope="row" >{{ subject.id }}</th>
                     <td>{{ subject.major }}</td>
                     <td>{{ subject.name }}</td>
+                    {%if is_granted('ROLE_ADMIN') %}
                     <td>
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('delete_subject', {'id': subject.id}) }}">Delete</a>
                             <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('edit_subject', {'id': subject.id}) }}">Edit</a>
                         </div>
                     </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+    {%if is_granted('ROLE_ADMIN') %}
     <div style="margin-left: 15%; padding-bottom: 20px; width: 70%" class="d-grid gap-2">
         <a class="btn btn-outline-info" href="{{path('subject_create')}}" role="button">Add a new Subject</a>
     </div>
+    {% endif %}
 
 
 {% endblock %}

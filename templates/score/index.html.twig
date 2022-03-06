@@ -10,7 +10,9 @@
                     <th style="text-align: center" scope="col">Student</th>
                     <th style="text-align: center" scope="col">Subject</th>
                     <th style="text-align: center" scope="col">Score</th>
-                    <th style="text-align: center" scope="col">Action</th>
+                    {%if is_granted('ROLE_ADMIN') %}
+                         <th style="text-align: center" scope="col">Action</th>
+                    {% endif %}
                 </tr>
                 </thead>
                 <tbody>
@@ -19,12 +21,13 @@
                         <td>{{ score.student}}</td>
                         <td>{{ score.subject }}</td>
                         <td>{{ score.score }}</td>
+                        {%if is_granted('ROLE_ADMIN') %}
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
                                 <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('score_delete_by_id', {'student': score.student, 'subject': score.subject}) }}">Delete</a>
                                 <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('score_edit', {'student': score.student}) }}">Edit</a>
                             </div>
-
+                        {% endif %}
                         </td>
 
                     </tr>
@@ -32,9 +35,11 @@
                 </tbody>
             </table>
         </div>
+        {%if is_granted('ROLE_ADMIN') %}
         <div style="margin-left: 15%; width: 70%" class="d-grid gap-2">
             <a class="btn btn-outline-info" href="{{path('score_create')}}" role="button">Add new Scoreboard</a>
         </div>
+        {% endif%}
     {% endif %}
 
     {% if app.user == null %}
