@@ -19,9 +19,11 @@
                     <td>{{ subject.major }}</td>
                     <td>{{ subject.name }}</td>
                     <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
                             <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('delete_subject', {'id': subject.id}) }}">Delete</a>
+                            <a class="btn btn-outline-info" style="text-decoration: none" href="{{ path('edit_subject', {'id': subject.id}) }}">Edit</a>
+                        </div>
                     </td>
-
                 </tr>
             {% endfor %}
             </tbody>

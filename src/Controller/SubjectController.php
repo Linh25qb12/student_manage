@@ -34,7 +34,6 @@ class SubjectController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $subject->setName($request->request->get('subject')['Name']);
             $entityManager->persist($subject);
             $entityManager->flush();
 
@@ -42,7 +41,7 @@ class SubjectController extends AbstractController
         }
 
         return $this->renderForm('subject/create.html.twig', [
-            'category' => $subject,
+            'subject' => $subject,
             'form' => $form,
         ]);
     }
@@ -63,5 +62,26 @@ class SubjectController extends AbstractController
         $em->remove($subject);
         $em->flush();
         return $this->render('subject/success.html.twig');
+    }
+
+    /**
+     * @Route("subject/edit/{id}", name="edit_subject", methods={"GET", "POST"})
+     */
+    public function subjectEdit(Request $request, EntityManagerInterface $entityManager, Subject $subject)
+    {
+        $form = $this->createForm(SubjectType::class, $subject);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($subject);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('list_subject');
+        }
+
+        return $this->renderForm('subject/edit.html.twig', [
+            'subject' => $subject,
+            'form' => $form,
+        ]);
     }
 }
