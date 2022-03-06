@@ -62,4 +62,25 @@ class MajorController extends AbstractController
         $em->flush();
         return $this->render('major/success.html.twig');
     }
+
+    /**
+     * @Route("major/edit/{id}", name="edit_major", methods={"GET", "POST"})
+     */
+    public function subjectEdit(Request $request, EntityManagerInterface $entityManager, Major $major)
+    {
+        $form = $this->createForm(MajorType::class, $major);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($major);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('list_major');
+        }
+
+        return $this->renderForm('major/edit.html.twig', [
+            'major' => $major,
+            'form' => $form,
+        ]);
+    }
 }
