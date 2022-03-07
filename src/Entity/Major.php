@@ -26,6 +26,7 @@ class Major
 
     /**
      * @ORM\OneToMany(targetEntity=Student::class, mappedBy="major")
+     *
      */
     private $students;
 

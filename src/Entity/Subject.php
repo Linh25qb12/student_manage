@@ -31,6 +31,7 @@ class Subject
 
     /**
      * @ORM\ManyToOne(targetEntity=Major::class, inversedBy="subjects")
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $major;
 
